@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  margin-top: 1rem;
+}
+
+.info-text {
+  text-align: center;
+}
+
+mat-spinner {
+  margin: auto;
+}
+mat-paginator {
+  margin-top: 1rem;
+}
+.place-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 132%;
+  margin-bottom: 10px;
+ }
+ .action-buttons{
+  margin-left: 8px;
+}
+
+.place-details {
+  display: flex;
+  justify-content: center;
+}
+
+.place-image {
+  width: 100%;
+  padding: 12px 15px;
+}
+.place-image img {
+  width: 100%;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.63);
+}
+
+.place-card {
+ width: 500px;
+}
+
+.place-header-image {
+  background-size: cover;
+}

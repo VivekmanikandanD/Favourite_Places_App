@@ -1,0 +1,16 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="place-search" *ngIf="places.length">
+  <mat-form-field appearance="standard">
+    <mat-label>Search Places</mat-label>
+    <input matInput [(ngModel)]="placename">
+  </mat-form-field>
+</div>
+<div multi="true" *ngIf="places && places.length > 0 && !isLoading" class="place-list">
+  <mat-card *ngFor="let place of places | SearchPlacesFilter: placename">
+    <span>{{ place.name }}</span>
+    <button mat-stroked-button color="primary"  [routerLink]="['/view',place.id]">VIEW DETAILS</button></mat-card>
+  <mat-paginator [length]="pageLength" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"  (page)="onChangePage($event)" *ngIf="places.length > 0"></mat-paginator>
+</div>
+<p class="info-text mat-body-1" *ngIf="places.length <= 0 && !isLoading">No places added yet!</p>
+
+

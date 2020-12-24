@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form [formGroup]="form" (submit)="onSavePlace()" *ngIf="!isLoading">
+    <mat-form-field>
+      <input matInput type="text" formControlName="name" placeholder="Place Name">
+      <mat-error *ngIf="form.get('name').invalid">Please enter a place name.</mat-error>
+    </mat-form-field>
+    <div>
+      <button type="button" mat-stroked-button (click)="filePicker.click()">Upload Image</button>
+      <input type="file" #filePicker (change)="onImagePicked($event)">
+      <mat-error *ngIf="form.get('image').invalid">Please upload an image.</mat-error>
+    </div>
+    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+      <img [src]="imagePreview" [alt]="form.value.name">
+    </div>
+    <mat-form-field>
+      <textarea matInput rows="4" formControlName="description" placeholder="Place Description"></textarea>
+      <mat-error *ngIf="form.get('description').invalid">Please enter the place description.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput rows="4" formControlName="address" placeholder="Place Address"></textarea>
+      <mat-error *ngIf="form.get('address').invalid">Please enter the place address.</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Save Place</button>
+  </form>
+</mat-card>

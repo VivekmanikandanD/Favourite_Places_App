@@ -1,0 +1,46 @@
+:host {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+.place-list {
+  width: 90%;
+}
+.place-search {
+  display: flex;
+  justify-content: flex-end;
+}
+mat-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 6px;
+}
+@media (max-width: 600px) {
+  .place-list button {
+    width: 50%;
+    font-size: 10px;
+    height: 31px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
+
+
+.info-text {
+  text-align: center;
+}
+
+mat-spinner {
+  margin: auto;
+}
+mat-paginator {
+  margin-top: 1rem;
+}
+
+mat-card {
+  display: flex;
+  justify-content: space-between;
+}

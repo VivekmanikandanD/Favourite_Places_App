@@ -1,0 +1,25 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="place-actions" *ngIf="place">
+     <button mat-raised-button color="primary" class="action-buttons" [routerLink]="['/edit',place.id]">EDIT</button>
+     <button mat-raised-button color="warn" class="action-buttons" (click)="onDelete(place.id)">DELETE</button>
+</div>
+<div class="place-details">
+  <mat-card class="place-card" *ngIf="place">
+    <mat-card-header>
+      <mat-card-title>{{place.name}}</mat-card-title>
+      <mat-card-subtitle>{{place.address}}</mat-card-subtitle>
+    </mat-card-header>
+    <div class="place-image">
+      <img mat-card-image [src]="place.imagePath" [alt]="place.name">
+    </div>
+    <mat-card-content>
+      <p>
+        {{place.description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-stroked-button (click)="goBack()">BACK</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<p class="info-text mat-body-1" *ngIf="!place && !isLoading">Place details not available!</p>

@@ -12,5 +12,3 @@
   <mat-paginator [length]="pageLength" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"  (page)="onChangePage($event)" *ngIf="places.length > 0"></mat-paginator>
 </div>
 <p class="info-text mat-body-1" *ngIf="places.length <= 0 && !isLoading">No places added yet!</p>
-
-

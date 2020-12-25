@@ -16,17 +16,23 @@ export class PlaceViewComponent implements OnInit, OnDestroy {
   enteredname = "";
   entereddescription = "";
   isLoading = false;
+  imagePreview: string;
+  userId: string;
   private placeId: string;
   private authStatusSub: Subscription;
   public place: Place;
-  imagePreview: string;
   constructor(public placesService: PlacesService, public route: ActivatedRoute,private authDataService:AuthDataService,private location:Location,private router:Router
    ) { }
 
   ngOnInit() {
     this.authStatusSub = this.authDataService.getAuthStatusListener().subscribe(authStatus => {
       this.isLoading = authStatus;
-    })
+      this.userId = this.authDataService.getUserId();
+      console.log(this.userId)
+    });
+    this.userId = this.authDataService.getUserId();
+    this.isLoading =this.authDataService.getLoggedInStatus();
+    console.log(this.userId)
    
     this.route.paramMap.subscribe((param: ParamMap) => {
       if (param.has('placeId')) {
@@ -43,7 +49,7 @@ export class PlaceViewComponent implements OnInit, OnDestroy {
             createdBy: placeObj.createdBy
           };
           this.imagePreview = placeObj.imagePath;
-          
+          console.log(this.place)
         });
       } else {
         this.placeId = null;

@@ -6,3 +6,24 @@ mat-form-field
 mat-spinner {
   margin: auto;
 }
+
+.signup-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 275px;
+}
+
+@media (max-width: 600px) {
+  .signup-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 390px;
+    width: 100%;
+  }
+  mat-card {
+    width: 100%;
+    height: 50%;
+  }
+}

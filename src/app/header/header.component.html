@@ -5,6 +5,7 @@
   <span class="spacer"></span>
   <span>
     <ul>
+      <li *ngIf="isLoggedIn" class="loggedin-user" [title]="loggedinUser">{{loggedinUser}}</li>
       <li *ngIf="isLoggedIn"><a mat-button routerLink="/create" routerLinkActive="mat-accent">Add Place</a></li>
       <li *ngIf="!isLoggedIn"><a mat-button routerLink="auth/login" routerLinkActive="mat-accent">Login</a></li>
       <li *ngIf="!isLoggedIn"><a mat-button routerLink="auth/signup" routerLinkActive="mat-accent">Signup</a></li>

@@ -1,5 +1,5 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
-<div class="place-actions" *ngIf="place">
+<div class="place-actions"  *ngIf="place && userId === place.createdBy">
      <button mat-raised-button color="primary" class="action-buttons" [routerLink]="['/edit',place.id]">EDIT</button>
      <button mat-raised-button color="warn" class="action-buttons" (click)="onDelete(place.id)">DELETE</button>
 </div>

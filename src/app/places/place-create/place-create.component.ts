@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Place } from "../place.model";
-import { mimeType } from './mime-type.validator'
 import { PlacesService } from "../places.service";
 import { Subscription } from "rxjs";
 import { AuthDataService } from "src/app/auth/auth-data.service";
+import { requiredFileType } from "./requiredFileType";
 
 @Component({
   selector: "app-place-create",
@@ -22,7 +22,7 @@ export class PlaceCreateComponent implements OnInit, OnDestroy {
   private authStatusSub: Subscription;
   public place: Place;
   imagePreview: string;
-  constructor(public placesService: PlacesService, public route: ActivatedRoute,private authDataService:AuthDataService ) { }
+  constructor(public placesService: PlacesService, public route: ActivatedRoute, private authDataService: AuthDataService) { }
 
   ngOnInit() {
     this.authStatusSub = this.authDataService.getAuthStatusListener().subscribe(authStatus => {
@@ -32,7 +32,7 @@ export class PlaceCreateComponent implements OnInit, OnDestroy {
       name: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
       description: new FormControl(null, { validators: [Validators.required] }),
       address: new FormControl(null, { validators: [Validators.required] }),
-      image: new FormControl(null, { asyncValidators: [mimeType] })
+      image: new FormControl(null, [requiredFileType()])
     });
     this.route.paramMap.subscribe((param: ParamMap) => {
       if (param.has('placeId')) {
@@ -81,21 +81,23 @@ export class PlaceCreateComponent implements OnInit, OnDestroy {
     this.form.get('image').updateValueAndValidity();
     if (this.form.invalid) {
       return;
-    }
-    this.mode === 'create' ?
-      this.placesService.addPlace(
-        this.form.value.name,
-        this.form.value.description,
-        this.form.value.address,
-        this.form.value.image) :
-      this.placesService.updatePlace(
-        this.placeId,
-        this.form.value.name,
-        this.form.value.description,
-        this.form.value.address,
-        this.form.value.image);
+    } else {
+      this.mode === 'create' ?
+        this.placesService.addPlace(
+          this.form.value.name,
+          this.form.value.description,
+          this.form.value.address,
+          this.form.value.image) :
+        this.placesService.updatePlace(
+          this.placeId,
+          this.form.value.name,
+          this.form.value.description,
+          this.form.value.address,
+          this.form.value.image);
 
-    this.form.reset();
+      this.form.reset();
+    }
+
   }
 
   ngOnDestroy() {

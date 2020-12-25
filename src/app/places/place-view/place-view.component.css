@@ -17,7 +17,6 @@ mat-paginator {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  width: 132%;
   margin-bottom: 10px;
  }
  .action-buttons{
